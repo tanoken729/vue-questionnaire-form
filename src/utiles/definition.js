@@ -1,3 +1,7 @@
+var this_year, today;
+today = new Date();
+this_year = today.getFullYear();
+
 // 配列を変数に格納
 const yearList = []
 const monthList = []
@@ -9,12 +13,15 @@ const optionLoop = (start, end, list) => {
         list.push(i)
 }
 
-optionLoop(1950, 2000, yearList);
+optionLoop(1950, this_year, yearList);
 optionLoop(1, 12, monthList);
 optionLoop(1, 31, dayList);
-// console.log(yearList);
-// console.log(monthList);
-// console.log(dayList);
 
 // 年月日の値のforループを配列に格納し、vueコンポーネントにexportする
 export {yearList, monthList, dayList}
+
+// メモ
+// https://teratail.com/questions/143982
+// console.log(yearList);
+// console.log(monthList);
+// console.log(dayList);
