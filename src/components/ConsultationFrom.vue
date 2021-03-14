@@ -7,19 +7,23 @@
     </div>
     <div class="body">
       <p class="genre">-ご相談内容-</p>
-        <textarea cols="50" rows="10"></textarea>
+        <textarea cols="50" rows="10" :value="consultation" @input="updateConsultation"></textarea>
     </div>
   </div>
   <div class="button-group">
     <router-link to="/questionnaire" class="button">前へ戻る ＞</router-link>
-    <router-link to="" class="button">次へ進む ＞</router-link>
+    <router-link to="/confirmation" class="button">次へ進む ＞</router-link>
   </div>
 </div>
 </template>
 
 <script>
 export default {
-  
+  methods: {
+    updateConsultation (e) {
+      this.$store.commit('updateConsultation', e.target.value)
+    }
+  }
 }
 </script>
 
