@@ -8,18 +8,18 @@
     <div class="body">
       <div>
         <p class="genre">現在、生命保険に加入されていますか？</p>
-          <label><input name="q1" type="radio" v-on:click="showQ2">はい</label>
-          <label><input name="q1" type="radio" v-on:click="showQ2">いいえ</label>
+          <label><input name="q1" type="radio" @click="showQ2" value="はい" @change="updateQ1">はい</label>
+          <label><input name="q1" type="radio" @click="showQ2" value="いいえ" @change="updateQ1">いいえ</label>
       </div>
       <div v-if="q2">
         <p class="genre">現在入院中ですか。または、最近3ヶ月以内に医師の診断・検査の結果、入院・手術をすすめられたことはありますか？</p>
-          <label><input name="q2" type="radio" v-on:click="showQ3">はい</label>
-          <label><input name="q2" type="radio" v-on:click="showQ3">いいえ</label>
+          <label><input name="q2" type="radio" @click="showQ3" value="はい" @change="updateQ2">はい</label>
+          <label><input name="q2" type="radio" @click="showQ3" value="いいえ" @change="updateQ2">いいえ</label>
       </div>
       <div v-if="q3">
         <p class="genre">過去5年以内に、病気やけがで、手術を受けたことまたは継続して7日以上の入院をしたことはありますか？</p>
-          <label><input name="q3" type="radio">はい</label>
-          <label><input name="q3" type="radio">いいえ</label>
+          <label><input name="q3" type="radio" value="はい" @change="updateQ3">はい</label>
+          <label><input name="q3" type="radio" value="いいえ" @change="updateQ3">いいえ</label>
       </div>
     </div>
   </div>
@@ -44,6 +44,15 @@ export default {
     },
     showQ3() {
       this.q3 = true
+    },
+    updateQ1(e) {
+      this.$store.commit('updateQ1', e.target.value)
+    },
+    updateQ2(e) {
+      this.$store.commit('updateQ2', e.target.value)
+    },
+    updateQ3(e) {
+      this.$store.commit('updateQ3', e.target.value)
     },
   }
 }
@@ -89,8 +98,13 @@ export default {
   text-align: left;
 }
 
+.body input {
+  vertical-align:middle;
+}
+
 .genre {
   color: #1e90ff;
+  line-height:200%
 }
 
 select {
